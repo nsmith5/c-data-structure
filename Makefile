@@ -11,7 +11,7 @@ lib/liblist.so: lib obj/list.o src/list.c
 obj:
 	mkdir obj
 
-obj/list.o: src/list.c
+obj/list.o: src/list.c obj
 	gcc -I./include -c src/list.c $(CFLAGS) -o obj/list.o
 
 test/list: test/list.c include/list.h lib/liblist.so
@@ -19,5 +19,5 @@ test/list: test/list.c include/list.h lib/liblist.so
 
 .PHONY: test
 
-test:
-	DYLIB_LIBRARY_PATH=./lib test/list
+test: test/list
+	LD_LIBRARY_PATH=./lib test/list

@@ -12,8 +12,18 @@ void test_list() {
     assert(get(l, 0) == 1);
     set(l, 0, 10);
     assert(get(l, 0) == 10);
-
-    assert(get(l, 0) == 1);
+    
+    // Test growth works
+    for (int i = 0; i < 100; i++) {
+       l = push(l, 4);
+    }
+    assert(l.cap == 128);
+    
+    // Test shrink works
+    for (int i = 0; i < 100; i++) {
+        pop(&l);
+    }
+    assert(l.cap == 64);
 }
 
 
